@@ -67,3 +67,13 @@ Since it is a web-component it is compatible with any frontend framework like Re
 | `src`       | Full size image source | `""`    |
 | `thumbnail` | Thumbnail of image     | `""`    |
 | `blur`      | Blur Amount            | `12`    |
+
+## Author
+
+- Created by Reez Patel
+- Email address: [reezpatel@gmail.com](mailto://reezpatel@gmail.com)
+- [@patelreez](https://twitter.com/patelreez) on Twitter.
+
+## License
+
+`progressive-image` is licensed under the MIT License. (See [LICENSE](https://github.com/reezpatel/progressive-image/blob/master/LICENSE))
