@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "site": "progressive-image",
+    "public": "demo",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

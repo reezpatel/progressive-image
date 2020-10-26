@@ -1,13 +1,13 @@
-const path = require("path");
+const path = require('path');
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: './src/index.js',
   output: {
-    library: "progressive-image",
-    libraryTarget: "umd",
-    libraryExport: "default",
-    path: path.resolve(__dirname, "dist"),
-    filename: "progressive-image.js",
+    library: 'progressive-image',
+    libraryTarget: 'umd',
+    libraryExport: 'default',
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'progressive-image.js',
   },
   module: {
     rules: [
@@ -16,9 +16,9 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             options: {
-              presets: ["@babel/preset-env"],
+              presets: ['@babel/preset-env'],
             },
           },
         ],

@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "codekart-99b55"
+  },
+  "targets": {
+    "codekart-99b55": {
+      "hosting": {
+        "progressive-image": [
+          "progressive-image"
+        ]
+      }
+    }
+  }
+}

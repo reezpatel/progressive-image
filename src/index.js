@@ -1,75 +1,79 @@
-import { image as processImage } from "stackblur-canvas";
+import { image as processImage } from 'stackblur-canvas';
 
 const styles = {
   wrapper: {
-    position: "relative",
+    position: 'relative',
   },
   image: {
-    width: "100%",
+    width: '100%',
     opacity: 1,
-    transition: "all 0.4s ease-in-out",
+    transition: 'all 0.4s ease-in-out',
   },
   thumbnail: {
-    position: "absolute",
-    width: "100%",
+    position: 'absolute',
+    width: '100%',
     opacity: 0,
-    transition: "all 0.4s ease-in-out",
+    transition: 'all 0.4s ease-in-out',
   },
   canvas: {
-    position: "absolute",
+    position: 'absolute',
     zIndex: 1,
     opacity: 1,
-    transition: "all 0.4s ease-in-out",
+    transition: 'all 0.4s ease-in-out',
   },
 };
 
 class ProgressiveImage extends HTMLElement {
-  wrapper = ProgressiveImage._createElement("div", "wrapper");
-  image = ProgressiveImage._createElement("img", "image");
-  thumbnail = ProgressiveImage._createElement("img", "thumbnail");
-  canvas = ProgressiveImage._createElement("canvas", "canvas");
+  constructor() {
+    super();
+    this.wrapper = ProgressiveImage.createElement('div', 'wrapper');
+    this.image = ProgressiveImage.createElement('img', 'image');
+    this.thumbnail = ProgressiveImage.createElement('img', 'thumbnail');
+    this.canvas = ProgressiveImage.createElement('canvas', 'canvas');
 
-  src = "";
-  thumb = "";
-  blur = 12;
+    this.src = '';
+    this.thumb = '';
+    this.blur = 12;
+  }
 
   connectedCallback() {
-    this._populateAttributes();
+    this.populateAttributes();
 
     this.image.src = this.thumb;
-    this.thumbnail.crossOrigin = "Anonymous";
+    this.thumbnail.crossOrigin = 'Anonymous';
     this.thumbnail.src = this.thumb;
 
     this.thumbnail.onload = this.onThumbnailLoad.bind(this);
 
-    this._populateDOM();
+    this.populateDOM();
   }
 
-  static _createElement(type, name) {
+  static createElement(type, name) {
     const element = document.createElement(type);
-    return ProgressiveImage._attachStyle(element, styles[name]);
+    return ProgressiveImage.attachStyle(element, styles[name]);
   }
 
-  static _attachStyle(node, style) {
+  static attachStyle(node, style) {
     Object.keys(style).forEach((key) => {
+      // eslint-disable-next-line no-param-reassign
       node.style[key] = style[key];
     });
     return node;
   }
 
-  _populateAttributes() {
+  populateAttributes() {
     this.getAttributeNames().forEach((attr) => {
       const value = this.getAttribute(attr);
       switch (attr) {
-        case "src": {
+        case 'src': {
           this.src = value;
           break;
         }
-        case "thumbnail": {
+        case 'thumbnail': {
           this.thumb = value;
           break;
         }
-        case "blur": {
+        case 'blur': {
           this.blur = Number(value) || 12;
           break;
         }
@@ -80,7 +84,7 @@ class ProgressiveImage extends HTMLElement {
     });
   }
 
-  _populateDOM() {
+  populateDOM() {
     this.wrapper.appendChild(this.canvas);
     this.wrapper.appendChild(this.thumbnail);
     this.wrapper.appendChild(this.image);
@@ -102,4 +106,4 @@ class ProgressiveImage extends HTMLElement {
   }
 }
 
-customElements.define("progressive-image", ProgressiveImage);
+customElements.define('progressive-image', ProgressiveImage);

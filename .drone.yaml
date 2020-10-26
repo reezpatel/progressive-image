@@ -1,0 +1,63 @@
+kind: pipeline
+type: kubernetes
+name: default
+
+workspace:
+  path: /drone/src
+
+steps:
+  - name: build-cache
+    image: node:lts-alpine
+    commands:
+      - "yarn install"
+  - name: lint
+    image: node:lts-alpine
+    commands:
+      - "yarn lint"
+    depends_on:
+    - build-cache
+  - name: deploy-website
+    image: node:lts-alpine
+    environment:
+      FIREBASE_TOKEN:
+        from_secret: FIREBASE_TOKEN
+    commands:
+      - firebase deploy --only hosting:progressive-image --token "$FIREBASE_TOKEN"
+    when:
+      event:
+        - promote
+      target:
+        - production
+    depends_on:
+    - lint
+  - name: npm-publish-image
+    image: alpine/helm:3.2.1
+    environment:
+      NPM_PUBLISH_TOKEN:
+        from_secret: NPM_PUBLISH_TOKEN
+    commands:
+      - echo "//registry.npmjs.org/:_authToken=${NPM_PUBLISH_TOKEN}" > .npmrc
+      - npm publish
+    when:
+      event:
+        - promote
+      target:
+        - production
+    depends_on:
+    - lint
+  - name: github-publish-image
+    image: alpine/helm:3.2.1
+    environment:
+      GITHUB_PUBLISH_TOKEN:
+        from_secret: GITHUB_PUBLISH_TOKEN
+    commands:
+      - echo "//npm.pkg.github.com/:_authToken=${GITHUB_PUBLISH_TOKEN}" > .npmrc
+      - node scripts/pre-github-registry.js
+      - npm publish
+    when:
+      event:
+        - promote
+      target:
+        - production
+    depends_on:
+    - lint
