@@ -12,7 +12,7 @@
 
 > NOTE: This is in alpha stage right, this is not ready for prod in any way.
 
-Checkout Demo: **[https://www.devpunk.io](https://www.devpunk.io)**
+Checkout Demo: **[https://progressive-image.codekart.dev](https://progressive-image.codekart.dev)**
 
 ## Install
 
