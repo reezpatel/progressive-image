@@ -14,6 +14,10 @@
 
 Checkout Demo: **[https://progressive-image.codekart.dev](https://progressive-image.codekart.dev)**
 
+Watch in Action : **[https://www.devpunk.io](https://www.devpunk.io)**
+
+![UI](https://raw.githubusercontent.com/reezpatel/progressive-image/main/assets/demo.gif)
+
 ## Install
 
 Use `NPM` or `Github` Registry to install blur-progressive-image.
