@@ -21,9 +21,11 @@ steps:
     environment:
       FIREBASE_TOKEN:
         from_secret: FIREBASE_TOKEN
+      PROJECT_NAME:
+        from_secret: PROJECT_NAME
     commands:
       - npm install -g firebase-tools
-      - firebase deploy --only hosting:progressive-image --token "$FIREBASE_TOKEN"
+      - firebase deploy -f --project $PROJECT_NAME --only hosting:progressive-image --token $FIREBASE_TOKEN
     when:
       event:
         - promote
@@ -37,7 +39,7 @@ steps:
       NPM_PUBLISH_TOKEN:
         from_secret: NPM_PUBLISH_TOKEN
     commands:
-      - echo "//registry.npmjs.org/:_authToken=${NPM_PUBLISH_TOKEN}" > .npmrc
+      - echo //registry.npmjs.org/:_authToken=$NPM_PUBLISH_TOKEN > .npmrc
       - npm publish
     when:
       event:
@@ -52,7 +54,7 @@ steps:
       GITHUB_PUBLISH_TOKEN:
         from_secret: GITHUB_PUBLISH_TOKEN
     commands:
-      - echo "//npm.pkg.github.com/:_authToken=${GITHUB_PUBLISH_TOKEN}" > .npmrc
+      - echo //npm.pkg.github.com/:_authToken=$GITHUB_PUBLISH_TOKEN > .npmrc
       - node scripts/pre-github-registry.js
       - npm publish
     when:
@@ -61,4 +63,4 @@ steps:
       target:
         - production
     depends_on:
-    - lint
+    - npm-publish-image
