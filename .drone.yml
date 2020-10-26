@@ -22,6 +22,7 @@ steps:
       FIREBASE_TOKEN:
         from_secret: FIREBASE_TOKEN
     commands:
+      - npm install -g firebase-tools
       - firebase deploy --only hosting:progressive-image --token "$FIREBASE_TOKEN"
     when:
       event:
@@ -31,7 +32,7 @@ steps:
     depends_on:
     - lint
   - name: npm-publish-image
-    image: alpine/helm:3.2.1
+    image: node:lts-alpine
     environment:
       NPM_PUBLISH_TOKEN:
         from_secret: NPM_PUBLISH_TOKEN
@@ -46,7 +47,7 @@ steps:
     depends_on:
     - lint
   - name: github-publish-image
-    image: alpine/helm:3.2.1
+    image: node:lts-alpine
     environment:
       GITHUB_PUBLISH_TOKEN:
         from_secret: GITHUB_PUBLISH_TOKEN
