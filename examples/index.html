@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Progressive Image - Demo</title>
+    <script src="../dist/progressive-image.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #00cec9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      .card {
+        background-color: #2d3436;
+        width: 480px;
+        padding: 40px;
+        border-radius: 15px;
+      }
+      .img {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <progressive-image
+        class="img"
+        src="https://images.unsplash.com/photo-1603581199574-a26aec366cad?auto=format&fit=crop&w=634&q=80"
+        thumbnail="https://images.unsplash.com/photo-1603581199574-a26aec366cad?auto=format&fit=crop&w=234&q=80"
+      >
+      </progressive-image>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "module": "AMD",
+    "target": "ES5",
+    "lib": ["es6", "DOM"],
+    "outFile": "p-image.js",
+    "moduleResolution": "Node"
+  },
+  "include": ["src"]
+}

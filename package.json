@@ -1,0 +1,46 @@
+{
+  "name": "blur-progressive-image",
+  "version": "0.0.6",
+  "description": "Progressive Image Loader as a Web Component",
+  "keywords": [
+    "progressive image loader",
+    "web component",
+    "image",
+    "blur"
+  ],
+  "homepage": "https://github.com/reezpatel/progressive-image",
+  "bugs": {
+    "url": "https://github.com/reezpatel/progressive-image/issues",
+    "email": "reezpatel@gmail.com"
+  },
+  "browser": "progressive-image.js",
+  "license": "MIT",
+  "author": {
+    "name": "Reez Patel",
+    "email": "reezpatel@gmail.com",
+    "url": "http://reez.dev/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/reezpatel/progressive-image.git"
+  },
+  "scripts": {
+    "start": "webpack --watch",
+    "build": "webpack",
+    "clean": "rm -rf dist",
+    "prepare": "npm run clean && npm run build"
+  },
+  "dependencies": {
+    "stackblur-canvas": "^2.4.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "babel-loader": "^8.1.0",
+    "webpack": "^5.2.0",
+    "webpack-cli": "^4.1.0"
+  },
+  "files": [
+    "dist/*"
+  ]
+}
